@@ -6,13 +6,7 @@ class Car {
    * который принимает объект-машину как параметр и выводит
    * в консоль значения свойств maxSpeed, speed, isOn, distance и price.
    */
-  static getSpecs({
-    maxSpeed = 0,
-    speed = 0,
-    isOn = false,
-    distance = 0,
-    price = 0,
-  }) {
+  static getSpecs({ maxSpeed, speed, isOn, distance, price }) {
     console.log({ maxSpeed, speed, isOn, distance, price });
   }
   /*
@@ -26,18 +20,12 @@ class Car {
    *  distance - общий киллометраж, изначально 0
    */
 
-  constructor({
-    speed = 0,
-    price = 0,
-    maxSpeed = 0,
-    isOn = false,
-    distance = 0,
-  }) {
-    this.speed = speed;
+  constructor({ maxSpeed, price }) {
+    this.speed = 0;
     this._price = price;
     this.maxSpeed = maxSpeed;
-    this.isOn = isOn;
-    this.distance = distance;
+    this.isOn = false;
+    this.distance = 0;
   }
 
   /*
@@ -51,13 +39,14 @@ class Car {
   set price(newPrice) {
     this._price = newPrice;
   }
+
   /*
    * Добавь код для того чтобы завести автомобиль
    * Записывает в свойство isOn значение true
    */
+
   turnOn() {
     this.isOn = true;
-    return this.isOn;
   }
 
   /*
@@ -68,7 +57,6 @@ class Car {
   turnOff() {
     this.isOn = false;
     this.speed = 0;
-    return this.isOn, this.speed;
   }
 
   /*
@@ -77,12 +65,9 @@ class Car {
    * не больше чем значение свойства maxSpeed
    */
   accelerate(value) {
-    if (this.speed <= this.maxSpeed) {
+    if (value <= this.maxSpeed) {
       this.speed = value;
-      return this.speed;
     }
-    this.speed = this.maxSpeed;
-    return this.speed;
   }
 
   /*
@@ -90,12 +75,9 @@ class Car {
    * при условии что результирующая скорость не меньше нуля
    */
   decelerate(value) {
-    if (this.speed >= 0) {
+    if (value >= 0) {
       this.speed -= value;
-      return this.speed;
     }
-    this.speed = 0;
-    return this.speed;
   }
 
   /*
@@ -105,10 +87,7 @@ class Car {
   drive(hours) {
     if (this.isOn) {
       this.distance += this.speed * hours;
-      return this.distance;
     }
-    this.distance = 0;
-    return this.distance;
   }
 }
 
