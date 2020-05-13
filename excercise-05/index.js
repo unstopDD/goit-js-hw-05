@@ -65,8 +65,8 @@ class Car {
    * не больше чем значение свойства maxSpeed
    */
   accelerate(value) {
-    if (value <= this.maxSpeed) {
-      this.speed = value;
+    if (this.speed + value <= this.maxSpeed) {
+      this.speed += value;
     }
   }
 
@@ -75,7 +75,7 @@ class Car {
    * при условии что результирующая скорость не меньше нуля
    */
   decelerate(value) {
-    if (value >= 0) {
+    if (this.speed - value >= 0) {
       this.speed -= value;
     }
   }
